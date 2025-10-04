@@ -5,7 +5,7 @@
 
 // Настройки
 define('APP_NAME', 'Demo PHP App');
-define('VERSION', '1.0.0');
+define('VERSION', '1.0.1');
 
 // Получаем текущее время
 $currentTime = date('Y-m-d H:i:s');
