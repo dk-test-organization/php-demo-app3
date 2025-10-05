@@ -1,16 +1,24 @@
-name: Deploy via Git Pull Webhook
+name: Deploy to Timeweb via SFTP
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Trigger deployment webhook
-      run: |
-        echo "Deployment will be triggered via GitHub webhook"
-        echo "Make sure webhook is configured at: https://github.com/dk-test-organization/php-demo-app3/settings/hooks"
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: vh314.timeweb.ru
+          port: 22
+          username: co89321
+          password: ${{ secrets.SFTP_PASSWORD }}
+          local_path: "./"
+          remote_path: "/home/c/co89321/public_html/test/github_cc_autodeploy3"
+          sftp_only: true
